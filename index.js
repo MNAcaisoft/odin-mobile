@@ -1,3 +1,3 @@
-import { start } from './src';
+import App from './src';
 
-start();
+const app = new App();
