@@ -14,6 +14,4 @@ const store = init({
   plugins: [loading],
 });
 
-store.dispatch.app.init();
-
 export default store;
