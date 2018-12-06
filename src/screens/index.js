@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SafeAreaView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Root, StyleProvider } from 'native-base';
 import getTheme from '../../native-base-theme/components';
@@ -12,9 +13,11 @@ function themeWrap(WrappedComponent) {
     render() {
       return (
         <StyleProvider style={getTheme(variables)}>
-          <Root style={{ backgroundColor: '#fff' }}>
-            <WrappedComponent {...this.props} />
-          </Root>
+          <SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>
+            <Root style={{ backgroundColor: '#fff' }}>
+              <WrappedComponent {...this.props} />
+            </Root>
+          </SafeAreaView>
         </StyleProvider>
       );
     }
