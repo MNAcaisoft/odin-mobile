@@ -1,38 +1,34 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { Navigation } from 'react-native-navigation';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    Navigation.events().bindComponent(this);
-    console.log('props', props);
-  }
+import { Container, Content, Button, Text, Spinner, View } from 'native-base';
+
+import styles from './styles';
+
+class Login extends React.Component {
+  static propTypes = {
+    onLogin: PropTypes.func,
+    loginForm: PropTypes.object,
+    loading: PropTypes.bool,
+  };
 
   render() {
+    const { onLogin, loginForm, loading } = this.props;
+    const { logoContainer, formContainer, loginButtonContainer, loginButton } = styles;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to ARNS Login!</Text>
-      </View>
+      <Container>
+        <Content>
+          <View style={logoContainer} />
+          <View style={formContainer}>{loginForm}</View>
+          <View style={loginButtonContainer}>
+            <Button onPress={onLogin} style={loginButton}>
+              {loading ? <Spinner color="white" /> : <Text>LOGIN</Text>}
+            </Button>
+          </View>
+        </Content>
+      </Container>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default Login;

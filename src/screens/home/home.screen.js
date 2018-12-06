@@ -1,37 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, Spinner, Text, View } from 'native-base';
 import React from 'react';
-import { Navigation } from 'react-native-navigation';
+import PropTypes from 'prop-types';
+
+import styles from './styles';
 
 export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    Navigation.events().bindComponent(this);
-  }
+  static propTypes = {
+    onLogout: PropTypes.func,
+    loading: PropTypes.bool,
+  };
 
   render() {
+    const { onLogout, loading } = this.props;
+    const { container, welcome, logoutButton } = styles;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to ARNS Home!</Text>
+      <View style={container}>
+        <Text style={welcome}>Welcome to ARNS Home!</Text>
+        <Button onPress={onLogout} style={logoutButton}>
+          {loading ? <Spinner color="white" /> : <Text>LOGOUT</Text>}
+        </Button>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

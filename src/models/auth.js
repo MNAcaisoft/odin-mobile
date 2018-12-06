@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native';
-import Http, { setAuthHeader, removeAuthHeader } from '@services/http';
-import Config from '@services/config';
+import { Navigation } from 'react-native-navigation';
+import Http, { setAuthHeader, removeAuthHeader } from '../services/http';
+import Config from '../services/config';
 
 const auth = {
   effects: dispatch => ({
@@ -18,36 +19,50 @@ const auth = {
         if (token !== null) {
           this.setToken(token);
         }
-        console.log('token');
         return token;
       } catch (error) {
         console.log('Something went wrong!');
       }
     },
-    async login(data) {
+    async login({ data, componentId }) {
       try {
         const response = await Http.post('/auth/login/', data);
         await this.storeToken(response.data.token);
+        setAuthHeader(response.data.token);
         this.setUser(response.data.user);
-        dispatch.navigation.changeAppRoot({
-          view: `${Config.urlPrefix}.Home`,
-          title: 'Home',
-          sidebar: true,
+        Navigation.setStackRoot(componentId, {
+          component: {
+            name: `${Config.urlPrefix}.Home`,
+            options: {
+              animations: {
+                setStackRoot: {
+                  enabled: true,
+                },
+              },
+            },
+          },
         });
         return response;
       } catch (err) {
         throw err.response;
       }
     },
-    async logout() {
+    async logout({ componentId }) {
       try {
         await AsyncStorage.removeItem(`@${Config.urlPrefix}:token`);
         this.setToken(null);
         removeAuthHeader();
-        dispatch.navigation.changeAppRoot({
-          view: `${Config.urlPrefix}.Home`,
-          title: 'Home',
-          sidebar: false,
+        Navigation.setStackRoot(componentId, {
+          component: {
+            name: `${Config.urlPrefix}.Login`,
+            options: {
+              animations: {
+                setStackRoot: {
+                  enabled: true,
+                },
+              },
+            },
+          },
         });
       } catch (error) {
         console.log('Something went wrong!');
