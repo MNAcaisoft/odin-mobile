@@ -21,14 +21,13 @@ const routes = [
 class SideBar extends React.Component {
   static propTypes = {
     onLogout: PropTypes.func,
-    onToggleSideBar: PropTypes.func,
     componentId: PropTypes.string,
   };
 
   async goTo(route, caption, logout) {
     const { onLogout, componentId } = this.props;
     if (logout) {
-      await onLogout();
+      await onLogout({componentId});
     } else {
       Navigation.push(componentId, {
         component: {
