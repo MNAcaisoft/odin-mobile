@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  topBar: {
+    backgroundColor: '#0d4364',
+  },
   topBarLeft: {
     flex: 1,
   },

@@ -14,9 +14,9 @@ class TopBar extends React.Component {
 
   render() {
     const { title, left, right } = this.props;
-    const { topBarLeft, topBarCenter, topBarCenterTitle, topBarRight } = styles;
+    const { topBar, topBarLeft, topBarCenter, topBarCenterTitle, topBarRight } = styles;
     return (
-      <Header>
+      <Header style={topBar}>
         <Left style={topBarLeft}>{left}</Left>
         <Body style={topBarCenter}>
           <Title style={topBarCenterTitle}>{title}</Title>
