@@ -24,7 +24,7 @@ class BackIcon extends React.Component {
         style={goBackIcon}
         type="MaterialIcons"
         name="arrow-back"
-        onPress={() => this.goBack(stackComponentId)}
+        onPress={() => this.goBack('AppRoot')}
       />
     );
   }

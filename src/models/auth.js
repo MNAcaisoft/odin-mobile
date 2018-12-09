@@ -25,6 +25,7 @@ const auth = {
       }
     },
     async login({ data }) {
+      // credentials to ibf.space ->  test@ibf.space/Test123*
       try {
         const response = await Http.post('/auth/login/', data);
         await this.storeToken(response.data.token);

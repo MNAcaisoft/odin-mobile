@@ -21,19 +21,14 @@ const routes = [
 class SideBar extends React.Component {
   static propTypes = {
     onLogout: PropTypes.func,
-    stackComponentId: PropTypes.string,
   };
 
-  componentDidMount(){
-    console.log('props', this.props);
-  }
-
   async goTo(route, caption, logout) {
-    const { onLogout, stackComponentId } = this.props;
+    const { onLogout } = this.props;
     if (logout) {
-      await onLogout({ stackComponentId });
+      await onLogout({ stackComponentId: 'AppRoot' });
     } else {
-      Navigation.push(stackComponentId, {
+      Navigation.push('AppRoot', {
         component: {
           name: `${Config.urlPrefix}.${route}`,
         },

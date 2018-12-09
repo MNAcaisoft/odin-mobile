@@ -15,11 +15,11 @@ function themeWrap(WrappedComponent) {
     render() {
       return (
         <StyleProvider style={getTheme(variables)}>
-          <SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>
+          {/*<SafeAreaView style={{ flex: 1, backgroundColor: '#000' }}>*/}
             <Root style={{ backgroundColor: '#fff' }}>
               <WrappedComponent {...this.props} />
             </Root>
-          </SafeAreaView>
+          {/*</SafeAreaView>*/}
         </StyleProvider>
       );
     }

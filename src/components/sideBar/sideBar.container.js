@@ -15,11 +15,11 @@ class SideBarContainer extends React.Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
-    Navigation.events().registerComponentDidAppearListener(
-      async ({ componentId, componentName }) => {
-        await props.setComponentId(componentId);
-      }
-    );
+    // Navigation.events().registerComponentDidAppearListener(
+    //   async ({ componentId, componentName }) => {
+    //     await props.setComponentId(componentId);
+    //   }
+    // );
   }
 
   render() {
