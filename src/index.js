@@ -1,8 +1,8 @@
 import { Navigation } from 'react-native-navigation';
 import React from 'react';
 import { Provider } from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 import store from './models';
-import SplashScreen from 'react-native-splash-screen'
 import Config from './services/config';
 import { registerScreens } from './screens';
 
