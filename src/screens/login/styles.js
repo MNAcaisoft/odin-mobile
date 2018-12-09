@@ -1,37 +1,33 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  logoContainer: {
+  centeredContainer: {
     flex: 1,
-    height: 180,
+    width: '100%',
+    height: '100%',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'flex-end',
-    padding: 10,
   },
   formContainer: {
-    paddingLeft: 25,
-    paddingRight: 25,
-    paddingBottom: 40,
-    flex: 1,
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 180,
+    width: '90%',
+    paddingLeft: 35,
+    paddingRight: 35,
   },
   loginButton: {
     alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: '#0d4364',
-    paddingVertical: 15,
-    width: '80%',
+    backgroundColor: '#0187ed',
+    width: '100%',
   },
-  loginButtonContainer: {
-    flex: 1,
+  loginFieldsContainer: {
+    paddingBottom: 60,
+  },
+  loginLogoContainer: {
+    paddingBottom: 60,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: 35,
-    paddingRight: 35,
   },
 });
 export default styles;
