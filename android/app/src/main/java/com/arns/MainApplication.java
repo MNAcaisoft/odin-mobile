@@ -12,6 +12,8 @@ import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,13 +30,15 @@ public class MainApplication extends NavigationApplication {
       return new ReactGateway(this, isDebug(), host);
   }
 
-  @Override
-  public boolean isDebug() {
-      return BuildConfig.DEBUG;
-  }
+    @Override
+    public boolean isDebug() {
+        return BuildConfig.DEBUG;
+    }
 
   protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList();
+      return Arrays.<ReactPackage>asList(
+              new SplashScreenReactPackage()
+      );
   }
 
   @Override

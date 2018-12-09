@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './models';
+import SplashScreen from 'react-native-splash-screen'
 import Config from './services/config';
 import { registerScreens } from './screens';
 
@@ -51,6 +52,7 @@ export default class App extends React.Component {
             },
           },
         });
+        SplashScreen.hide();
       } else {
         Navigation.setRoot({
           root: {
@@ -91,6 +93,7 @@ export default class App extends React.Component {
             },
           },
         });
+        SplashScreen.hide();
       }
     });
   }
