@@ -9,8 +9,8 @@ import styles from './styles';
 class SideBarIcon extends React.Component {
   static propTypes = {};
 
-  toggle = componentId => {
-    Navigation.mergeOptions(componentId, {
+  toggle = async componentId => {
+    await Navigation.mergeOptions(componentId, {
       sideMenu: {
         left: {
           visible: true,
@@ -26,7 +26,7 @@ class SideBarIcon extends React.Component {
         style={sideBarIcon}
         ios="ios-menu"
         android="md-menu"
-        onPress={() => this.toggle('Drawer')}
+        onPress={() => this.toggle('SideBar')}
       />
     );
   }

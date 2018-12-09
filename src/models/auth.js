@@ -24,19 +24,33 @@ const auth = {
         console.log('Something went wrong!');
       }
     },
-    async login({ data, componentId }) {
+    async login({ data }) {
       try {
         const response = await Http.post('/auth/login/', data);
         await this.storeToken(response.data.token);
         setAuthHeader(response.data.token);
         this.setUser(response.data.user);
-        Navigation.setStackRoot(componentId, {
-          component: {
-            name: `${Config.urlPrefix}.Home`,
-            options: {
-              animations: {
-                setStackRoot: {
-                  enabled: true,
+        Navigation.setRoot({
+          root: {
+            sideMenu: {
+              id: 'sideMenu',
+              left: {
+                component: {
+                  id: 'SideBar',
+                  name: `${Config.urlPrefix}.SideBar`,
+                },
+              },
+              center: {
+                stack: {
+                  id: 'AppRoot',
+                  children: [
+                    {
+                      component: {
+                        id: 'Home',
+                        name: `${Config.urlPrefix}.Home`,
+                      },
+                    },
+                  ],
                 },
               },
             },
@@ -47,7 +61,7 @@ const auth = {
         throw err.response;
       }
     },
-    async logout({ componentId }) {
+    async logout() {
       try {
         await AsyncStorage.removeItem(`@${Config.urlPrefix}:token`);
         this.setToken(null);

@@ -6,6 +6,7 @@ import getTheme from '../../native-base-theme/components';
 import variables from '../../native-base-theme/variables/material';
 import Config from '../services/config';
 import HomeContainer from './home/home.container';
+import ProfileContainer from './profile/profile.container';
 import LoginContainer from './login/login.container';
 import SideBarContainer from '../components/sideBar/sideBar.container';
 
@@ -41,6 +42,12 @@ export function registerScreens(store, Provider) {
   Navigation.registerComponentWithRedux(
     `${Config.urlPrefix}.Home`,
     () => themeWrap(HomeContainer),
+    Provider,
+    store
+  );
+  Navigation.registerComponentWithRedux(
+    `${Config.urlPrefix}.Profile`,
+    () => themeWrap(ProfileContainer),
     Provider,
     store
   );

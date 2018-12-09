@@ -1,15 +1,19 @@
 const app = {
-  effects: dispatch => ({}),
+  effects: dispatch => ({
+    async setComponentId(componentId) {
+      this.setComponent(componentId);
+    },
+  }),
   reducers: {
-    setRoot(state, payload) {
+    setComponent(state, payload) {
       return {
         ...state,
-        root: payload,
+        stackComponentId: payload,
       };
     },
   },
   state: {
-    root: null,
+    stackComponentId: null,
   },
 };
 

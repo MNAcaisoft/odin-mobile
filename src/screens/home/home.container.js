@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import Home from './home.screen';
 
-class LoginContainer extends React.Component {
+class HomeContainer extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
     componentId: PropTypes.string,
-  };
-  static contextTypes = {
-    store: PropTypes.object,
   };
 
   constructor(props, state) {
@@ -18,30 +14,16 @@ class LoginContainer extends React.Component {
     Navigation.events().bindComponent(this);
   }
 
-  handleLogout = async () => {
-    const { logout, componentId } = this.props;
-    try {
-      await logout({ componentId });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   render() {
-    const { isLoading } = this.props;
-    return <Home onLogout={this.handleLogout} loading={isLoading} />;
+    return <Home />;
   }
 }
 
-const mapStateToProps = state => ({
-  isLoading: state.loading.effects.auth.logout,
-});
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = dispatch => ({
-  logout: dispatch.auth.logout,
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginContainer);
+)(HomeContainer);

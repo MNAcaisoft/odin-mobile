@@ -12,12 +12,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  logoutButton: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#0d4364',
-    paddingVertical: 15,
-    width: '80%',
-  },
 });
 export default styles;

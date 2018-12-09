@@ -31,7 +31,7 @@ export default class App extends React.Component {
               id: 'sideMenu',
               left: {
                 component: {
-                  id: 'Drawer',
+                  id: 'SideBar',
                   name: `${Config.urlPrefix}.SideBar`,
                 },
               },

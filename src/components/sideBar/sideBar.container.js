@@ -8,24 +8,35 @@ import SideBar from './sideBar.screen';
 class SideBarContainer extends React.Component {
   static propTypes = {
     logout: PropTypes.func,
-    componentId: PropTypes.string,
+    setComponentId: PropTypes.func,
+    stackComponentId: PropTypes.string,
   };
+
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
+    Navigation.events().registerComponentDidAppearListener(
+      async ({ componentId, componentName }) => {
+        await props.setComponentId(componentId);
+      }
+    );
   }
 
   render() {
-    const { logout, componentId } = this.props;
-    return <SideBar onLogout={logout} componentId={componentId} />;
+    const { logout, stackComponentId } = this.props;
+    return <SideBar onLogout={logout} stackComponentId={stackComponentId} />;
   }
 }
 
+const mapStateToProps = state => ({
+  stackComponentId: state.app.stackComponentId,
+});
 const mapDispatchToProps = dispatch => ({
   logout: dispatch.auth.logout,
+  setComponentId: dispatch.app.setComponentId,
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SideBarContainer);

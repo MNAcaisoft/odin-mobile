@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import TopBar from '../../components/topBar';
 
 import styles from './styles';
-import SideBarIcon from '../../components/sideBar/_components/sideBarIcon';
 
-export default class Home extends React.Component {
+import BackIcon from '../../components/topBar/_components/backIcon';
+
+export default class Profile extends React.Component {
   static propTypes = {};
 
   render() {
     const { container, welcome } = styles;
     return (
       <Container>
-        <TopBar title={'Home'} left={<SideBarIcon />} />
+        <TopBar title={'Profile'} left={<BackIcon />} />
         <View style={container}>
-          <Text style={welcome}>Welcome to ARNS Home!</Text>
+          <Text style={welcome}>Welcome to ARNS Profile!</Text>
         </View>
       </Container>
     );
