@@ -1,4 +1,4 @@
-package com.arns;
+package com.odinapp;
 
 import android.os.Bundle;
 import com.reactnativenavigation.NavigationActivity;

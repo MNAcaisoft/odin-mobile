@@ -1,4 +1,4 @@
-rootProject.name = 'arns'
+rootProject.name = 'OdinApp'
 
 include ':app'
 include ':react-native-navigation'

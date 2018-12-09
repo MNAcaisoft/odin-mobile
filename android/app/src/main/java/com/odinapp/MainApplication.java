@@ -1,4 +1,4 @@
-package com.arns;
+package com.odinapp;
 
 import android.app.Application;
 

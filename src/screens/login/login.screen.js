@@ -14,10 +14,10 @@ class Login extends React.Component {
 
   render() {
     const { onLogin, loginForm, loading } = this.props;
-    const { logoContainer, formContainer, loginButtonContainer, loginButton } = styles;
+    const { logoContainer, formContainer, loginButtonContainer, loginButton, loginBackground } = styles;
     return (
       <Container>
-        <Content>
+        <Content style={loginBackground}>
           <View style={logoContainer} />
           <View style={formContainer}>{loginForm}</View>
           <View style={loginButtonContainer}>

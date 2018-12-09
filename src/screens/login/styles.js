@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  loginBackground: {
+    backgroundColor: '#fff',
+    background: require('../../../assets/images/loginBackground.svg'),
+    backgroundSize: '800px 800px',
+    backgroundPosition: 'center',
+    width: '100%',
+    height: '100vh',
+    display: 'block',
+  },
   logoContainer: {
     flex: 1,
     height: 180,

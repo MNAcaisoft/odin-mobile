@@ -31,6 +31,21 @@ class SideBar extends React.Component {
       Navigation.push('AppRoot', {
         component: {
           name: `${Config.urlPrefix}.${route}`,
+          // options: {
+          //   animations: {
+          //     push: {
+          //       enabled: 'true',
+          //       content: {
+          //         alpha: {
+          //           from: 0,
+          //           to: 1,
+          //           duration: 300,
+          //           interpolation: 'decelerate',
+          //         },
+          //       },
+          //     },
+          //   },
+          // },
         },
       });
     }
