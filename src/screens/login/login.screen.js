@@ -26,27 +26,25 @@ class Login extends React.Component {
     } = styles;
     return (
       <Container>
-        <Content contentContainerStyle={{ flex: 1 }}>
-          <KeyboardAvoidingView style={{flex: 1}}>
-            <ImageBackground
-              source={require('../../../assets/images/loginBackground.png')}
-              style={centeredContainer}>
-              <View style={formContainer}>
-                <View style={loginLogoContainer}>
-                  <Image
-                    style={{ height: 30, width: 80, resizeMode: 'contain' }}
-                    source={require('../../../assets/images/logoText.png')}
-                  />
-                </View>
-                <View style={loginFieldsContainer}>{loginForm}</View>
-                <View style={loginButtonContainer}>
-                  <Button onPress={onLogin} style={loginButton} rounded>
-                    {loading ? <Spinner color="white" /> : <Text>LOGIN</Text>}
-                  </Button>
-                </View>
+        <Content contentContainerStyle={{ flexGrow: 1 }}>
+          <ImageBackground
+            source={require('../../../assets/images/loginBackground.png')}
+            style={centeredContainer}>
+            <View style={formContainer}>
+              <View style={loginLogoContainer}>
+                <Image
+                  style={{ height: 30, width: 80, resizeMode: 'contain' }}
+                  source={require('../../../assets/images/logoText.png')}
+                />
               </View>
-            </ImageBackground>
-          </KeyboardAvoidingView>
+              <View style={loginFieldsContainer}>{loginForm}</View>
+              <View style={loginButtonContainer}>
+                <Button onPress={onLogin} style={loginButton} rounded>
+                  {loading ? <Spinner color="white" /> : <Text>LOGIN</Text>}
+                </Button>
+              </View>
+            </View>
+          </ImageBackground>
         </Content>
       </Container>
     );
