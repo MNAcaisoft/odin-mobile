@@ -1,7 +1,8 @@
 import React from 'react';
-import { ActivityIndicator, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import SplashScreen from 'react-native-splash-screen';
 
 class Splash extends React.Component {
   static propTypes = {
@@ -17,12 +18,12 @@ class Splash extends React.Component {
     const { getToken, navigation } = this.props;
     const token = await getToken();
     navigation.navigate(token ? 'App' : 'Auth');
+    SplashScreen.hide();
   };
 
   render() {
     return (
       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
         <StatusBar barStyle="default" />
       </View>
     );
