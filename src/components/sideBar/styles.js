@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   linkWrapper: {
     flexDirection: 'row',
     marginVertical: 10,
-    paddingLeft: 25,
     paddingVertical: 14,
     borderBottomWidth: 0,
   },

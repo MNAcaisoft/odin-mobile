@@ -1,5 +1,16 @@
 import * as React from 'react';
-import { Container, Content, List, ListItem, Text, Thumbnail, Image } from 'native-base';
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Thumbnail,
+  Left,
+  Body,
+  Button,
+  Icon,
+} from 'native-base';
 
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -10,12 +21,19 @@ const userIconUri = require('../../../assets/images/user-icon-small.png');
 
 const routes = [
   {
+    route: 'Home',
+    caption: 'Payments',
+    iconName: 'md-card',
+  },
+  {
     route: 'Profile',
     caption: 'Profile',
+    iconName: 'md-person',
   },
   {
     route: '',
     caption: 'Logout',
+    iconName: 'md-log-out',
   },
 ];
 
@@ -47,7 +65,16 @@ class SideBar extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { container, linkWrapper, activeLink, versionContainer, versionText, avatar, avatarContainer, avatarText } = styles;
+    const {
+      container,
+      linkWrapper,
+      activeLink,
+      versionContainer,
+      versionText,
+      avatar,
+      avatarContainer,
+      avatarText,
+    } = styles;
     let visibleScreenInstanceId = '';
     return (
       <Container>
@@ -62,6 +89,7 @@ class SideBar extends React.Component {
             dataArray={routes}
             renderRow={route => (
               <ListItem
+                icon
                 style={[
                   linkWrapper,
                   visibleScreenInstanceId === 'profileStack' ? activeLink : undefined,
@@ -69,7 +97,14 @@ class SideBar extends React.Component {
                 onPress={() => {
                   this.goTo(route.route, route.caption, this.isLogout(route.caption));
                 }}>
-                <Text>{route.caption}</Text>
+                <Left>
+                  <Button style={{ backgroundColor: '#0187ed' }}>
+                    <Icon name={route.iconName} />
+                  </Button>
+                </Left>
+                <Body>
+                  <Text>{route.caption}</Text>
+                </Body>
               </ListItem>
             )}
           />
