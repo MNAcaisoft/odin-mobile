@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import Home from './home.screen';
 
 class HomeContainer extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
   static navigationOptions = {
     header: null,
   };
@@ -13,21 +15,15 @@ class HomeContainer extends React.Component {
     super(props, state);
   }
 
-  logout = async () => {
-    const { logout } = this.props;
-    await logout();
-  };
-
   render() {
-    return <Home onLogout={this.logout} />;
+    const { navigation } = this.props;
+    return <Home navigation={navigation} />;
   }
 }
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = dispatch => ({
-  logout: dispatch.auth.logout,
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,

@@ -7,21 +7,22 @@ import styles from './styles';
 
 class BackIcon extends React.Component {
   static propTypes = {
-    stackComponentId: PropTypes.string,
+    navigation: PropTypes.object,
   };
 
-  goBack = async componentId => {
+  goBack = () => {
+    const { navigation } = this.props;
+    navigation.goBack();
   };
 
   render() {
-    const { stackComponentId } = this.props;
     const { goBackIcon } = styles;
     return (
       <Icon
         style={goBackIcon}
         type="MaterialIcons"
         name="arrow-back"
-        onPress={() => this.goBack('AppRoot')}
+        onPress={() => this.goBack()}
       />
     );
   }

@@ -20,18 +20,23 @@ const routes = [
 class SideBar extends React.Component {
   static propTypes = {
     onLogout: PropTypes.func,
+    navigation: PropTypes.object,
   };
 
-  async goTo(route, caption, logout) {
-    const { onLogout } = this.props;
+  goTo(route, caption, logout) {
+    const { onLogout, navigation } = this.props;
+    this.toggle();
     if (logout) {
-      await onLogout({ stackComponentId: 'AppRoot' });
+      onLogout();
+    } else {
+      navigation.navigate(route);
     }
-
-    this.toggle('SideBar');
   }
 
-  toggle = componentId => {};
+  toggle = () => {
+    const { navigation } = this.props;
+    navigation.closeDrawer();
+  };
 
   isLogout(caption) {
     return caption === 'Logout';

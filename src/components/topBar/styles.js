@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   topBar: {
-    backgroundColor: '#0d4364',
+    backgroundColor: '#0187ed',
   },
   topBarLeft: {
     flex: 1,

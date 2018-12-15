@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#0d4364',
+    backgroundColor: '#0187ed',
   },
   link: {
     color: '#fff',

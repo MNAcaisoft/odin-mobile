@@ -5,21 +5,19 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 class SideBarIcon extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
 
-  toggle = async componentId => {
-
+  toggle = () => {
+    const { navigation } = this.props;
+    navigation.toggleDrawer();
   };
 
   render() {
     const { sideBarIcon } = styles;
     return (
-      <Icon
-        style={sideBarIcon}
-        ios="ios-menu"
-        android="md-menu"
-        onPress={() => this.toggle('SideBar')}
-      />
+      <Icon style={sideBarIcon} ios="ios-menu" android="md-menu" onPress={() => this.toggle()} />
     );
   }
 }
