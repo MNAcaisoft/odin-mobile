@@ -24,6 +24,25 @@ const auth = {
         console.log('Something went wrong!');
       }
     },
+    async storeUser(user) {
+      this.setUser(user);
+      try {
+        await AsyncStorage.setItem(`@${Config.urlPrefix}:user`, JSON.stringify(user));
+      } catch (error) {
+        console.log('Something went wrong!');
+      }
+    },
+    async getUser() {
+      try {
+        const user = await AsyncStorage.getItem(`@${Config.urlPrefix}:user`);
+        if (user !== null) {
+          this.setUser(JSON.parse(user));
+        }
+        return user;
+      } catch (error) {
+        console.log('Something went wrong!');
+      }
+    },
     async login({ data }) {
       try {
         const response = await Http.post('/auth/login/', {
@@ -32,8 +51,8 @@ const auth = {
           tenant: data.tenant || Config.tenantId,
         });
         await this.storeToken(response.data.token);
+        await this.storeUser(response.data.tenantProfile);
         setAuthHeader(response.data.token);
-        this.setUser(response.data.tenantProfile);
         NavigationService.navigate('Home');
         return response;
       } catch (err) {

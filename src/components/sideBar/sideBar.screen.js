@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Container, Content, List, ListItem, Text } from 'native-base';
+import { Container, Content, List, ListItem, Text, Thumbnail, Image } from 'native-base';
 
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import Config from './../../services/config';
+
+const userIconUri = require('../../../assets/images/user-icon-small.png');
 
 const routes = [
   {
@@ -21,6 +23,7 @@ class SideBar extends React.Component {
   static propTypes = {
     onLogout: PropTypes.func,
     navigation: PropTypes.object,
+    user: PropTypes.object,
   };
 
   goTo(route, caption, logout) {
@@ -43,11 +46,18 @@ class SideBar extends React.Component {
   }
 
   render() {
-    const { container, linkWrapper, activeLink, versionContainer, versionText } = styles;
+    const { user } = this.props;
+    const { container, linkWrapper, activeLink, versionContainer, versionText, avatar, avatarContainer, avatarText } = styles;
     let visibleScreenInstanceId = '';
     return (
       <Container>
         <Content style={container}>
+          <View style={avatarContainer} elevation={5}>
+            <View style={avatar}>
+              <Thumbnail large source={userIconUri} />
+              <Text style={avatarText}>Hello, {user.firstName}!</Text>
+            </View>
+          </View>
           <List
             dataArray={routes}
             renderRow={route => (
@@ -59,7 +69,7 @@ class SideBar extends React.Component {
                 onPress={() => {
                   this.goTo(route.route, route.caption, this.isLogout(route.caption));
                 }}>
-                <Text style={{ color: '#fff' }}>{route.caption}</Text>
+                <Text>{route.caption}</Text>
               </ListItem>
             )}
           />

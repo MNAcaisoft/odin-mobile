@@ -7,6 +7,7 @@ import SplashScreen from 'react-native-splash-screen';
 class Splash extends React.Component {
   static propTypes = {
     getToken: PropTypes.func,
+    getUser: PropTypes.func,
   };
 
   constructor(props) {
@@ -15,9 +16,10 @@ class Splash extends React.Component {
   }
 
   bootstrapApp = async () => {
-    const { getToken, navigation } = this.props;
+    const { getToken, getUser, navigation } = this.props;
     const token = await getToken();
-    navigation.navigate(token ? 'App' : 'Auth');
+    const user = await getUser();
+    navigation.navigate(token && user ? 'App' : 'Auth');
     SplashScreen.hide();
   };
 
@@ -30,13 +32,11 @@ class Splash extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLoading: state.loading.effects.auth.login,
-  token: state.auth.token,
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   getToken: dispatch.auth.getToken,
+  getUser: dispatch.auth.getUser,
 });
 
 export default connect(

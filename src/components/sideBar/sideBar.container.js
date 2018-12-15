@@ -8,15 +8,18 @@ class SideBarContainer extends React.Component {
   static propTypes = {
     logout: PropTypes.func,
     navigation: PropTypes.object,
+    user: PropTypes.object,
   };
 
   render() {
-    const { logout, navigation } = this.props;
-    return <SideBar onLogout={logout} navigation={navigation} />;
+    const { logout, navigation, user } = this.props;
+    return <SideBar onLogout={logout} navigation={navigation} user={user} />;
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
 const mapDispatchToProps = dispatch => ({
   logout: dispatch.auth.logout,
 });
