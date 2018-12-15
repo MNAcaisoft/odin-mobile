@@ -25,12 +25,15 @@ const auth = {
       }
     },
     async login({ data }) {
-      // credentials to ibf.space ->  test@ibf.space/Test123*
       try {
-        const response = await Http.post('/auth/login/', data);
+        const response = await Http.post('/auth/login/', {
+          login: data.email,
+          password: data.password,
+          tenant: data.tenant || Config.tenantId,
+        });
         await this.storeToken(response.data.token);
         setAuthHeader(response.data.token);
-        this.setUser(response.data.user);
+        this.setUser(response.data.tenantProfile);
         Navigation.setRoot({
           root: {
             sideMenu: {

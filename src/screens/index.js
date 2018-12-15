@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { SafeAreaView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Root, StyleProvider } from 'native-base';
 import getTheme from '../../native-base-theme/components';
@@ -12,6 +11,8 @@ import SideBarContainer from '../components/sideBar/sideBar.container';
 
 function themeWrap(WrappedComponent) {
   return class theme extends React.Component {
+    static navigatorButtons = WrappedComponent.navigatorButtons;
+    static navigatorStyle = WrappedComponent.navigatorStyle;
     render() {
       return (
         <StyleProvider style={getTheme(variables)}>

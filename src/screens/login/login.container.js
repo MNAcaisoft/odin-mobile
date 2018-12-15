@@ -5,6 +5,8 @@ import { Navigation } from 'react-native-navigation';
 import _ from 'lodash';
 import Login from './login.screen';
 
+import { showToast } from '../../services/toast';
+
 const t = require('tcomb-form-native');
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 
@@ -68,8 +70,8 @@ class LoginContainer extends React.Component {
       try {
         await login({ data: formValue, componentId });
       } catch (err) {
-        if (err.status === 400) {
-          console.log('wrong credentials');
+        if (err.status === 401) {
+          showToast('error', err.data.error);
         }
       }
     }

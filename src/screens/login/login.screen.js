@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { ImageBackground, Image, KeyboardAvoidingView } from 'react-native';
+import { ImageBackground, Image } from 'react-native';
 
 import { Container, Content, Button, Text, Spinner, View } from 'native-base';
 
@@ -26,7 +26,7 @@ class Login extends React.Component {
     } = styles;
     return (
       <Container>
-        <Content contentContainerStyle={{ flexGrow: 1 }}>
+        <Content contentContainerStyle={{ flex: 1 }}>
           <ImageBackground
             source={require('../../../assets/images/loginBackground.png')}
             style={centeredContainer}>
