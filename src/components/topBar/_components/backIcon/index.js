@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Icon } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Navigation } from 'react-native-navigation';
-
 import connect from 'react-redux/es/connect/connect';
 import styles from './styles';
 
@@ -13,7 +11,6 @@ class BackIcon extends React.Component {
   };
 
   goBack = async componentId => {
-    await Navigation.pop(componentId);
   };
 
   render() {

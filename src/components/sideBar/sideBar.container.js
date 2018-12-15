@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Navigation } from 'react-native-navigation';
 import SideBar from './sideBar.screen';
 
 class SideBarContainer extends React.Component {
@@ -14,7 +13,6 @@ class SideBarContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    Navigation.events().bindComponent(this);
   }
 
   render() {

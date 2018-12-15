@@ -1,30 +1,35 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { Navigation } from 'react-native-navigation';
 import Home from './home.screen';
 
-export default class HomeContainer extends React.Component {
-  static propTypes = {
-    componentId: PropTypes.string,
+class HomeContainer extends React.Component {
+  static propTypes = {};
+  static navigationOptions = {
+    header: null,
   };
 
   constructor(props, state) {
     super(props, state);
-    // Navigation.events().bindComponent(this);
   }
 
+  logout = async () => {
+    const { logout } = this.props;
+    await logout();
+  };
+
   render() {
-    return <View><Text>Helloo</Text></View>;
+    return <Home onLogout={this.logout} />;
   }
 }
 
-// const mapStateToProps = state => ({});
-//
-// const mapDispatchToProps = dispatch => ({});
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(HomeContainer);
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  logout: dispatch.auth.logout,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeContainer);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
 import _ from 'lodash';
 import Login from './login.screen';
 
@@ -52,10 +51,12 @@ class LoginContainer extends React.Component {
   static contextTypes = {
     store: PropTypes.object,
   };
+  static navigationOptions = {
+    header: null,
+  };
 
   constructor(props, state) {
     super(props, state);
-    Navigation.events().bindComponent(this);
     this.state = {
       email: null,
       password: null,
