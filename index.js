@@ -1,3 +1,4 @@
-import App from './src';
+import { AppRegistry } from 'react-native';
+import HomeContainer from './src/screens/home/home.container';
 
-const app = new App();
+AppRegistry.registerComponent('odinapp', () => HomeContainer);
