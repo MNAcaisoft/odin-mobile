@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Container, Content, List, ListItem, Text } from 'native-base';
-import { Navigation } from 'react-native-navigation';
 
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -21,46 +20,22 @@ const routes = [
 class SideBar extends React.Component {
   static propTypes = {
     onLogout: PropTypes.func,
+    navigation: PropTypes.object,
   };
 
-  async goTo(route, caption, logout) {
-    const { onLogout } = this.props;
+  goTo(route, caption, logout) {
+    const { onLogout, navigation } = this.props;
+    this.toggle();
     if (logout) {
-      await onLogout({ stackComponentId: 'AppRoot' });
+      onLogout();
     } else {
-      Navigation.push('AppRoot', {
-        component: {
-          name: `${Config.urlPrefix}.${route}`,
-          // options: {
-          //   animations: {
-          //     push: {
-          //       enabled: 'true',
-          //       content: {
-          //         alpha: {
-          //           from: 0,
-          //           to: 1,
-          //           duration: 300,
-          //           interpolation: 'decelerate',
-          //         },
-          //       },
-          //     },
-          //   },
-          // },
-        },
-      });
+      navigation.navigate(route);
     }
-
-    this.toggle('SideBar');
   }
 
-  toggle = componentId => {
-    Navigation.mergeOptions(componentId, {
-      sideMenu: {
-        left: {
-          visible: false,
-        },
-      },
-    });
+  toggle = () => {
+    const { navigation } = this.props;
+    navigation.closeDrawer();
   };
 
   isLogout(caption) {

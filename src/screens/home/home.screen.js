@@ -7,15 +7,18 @@ import styles from './styles';
 import SideBarIcon from '../../components/sideBar/_components/sideBarIcon';
 
 export default class Home extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
 
   render() {
+    const { navigation } = this.props;
     const { container, welcome } = styles;
     return (
       <Container>
-        <TopBar title={'Home'} left={<SideBarIcon />} />
+        <TopBar title={'Home'} left={<SideBarIcon navigation={navigation} />} />
         <View style={container}>
-          <Text style={welcome}>Welcome to ARNS Home!</Text>
+          <Text style={welcome}>Welcome to ODIN Home!</Text>
         </View>
       </Container>
     );

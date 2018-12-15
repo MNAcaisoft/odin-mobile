@@ -1,21 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Navigation } from 'react-native-navigation';
 import Home from './home.screen';
 
 class HomeContainer extends React.Component {
   static propTypes = {
-    componentId: PropTypes.string,
+    navigation: PropTypes.object,
+  };
+  static navigationOptions = {
+    header: null,
   };
 
   constructor(props, state) {
     super(props, state);
-    Navigation.events().bindComponent(this);
   }
 
   render() {
-    return <Home />;
+    const { navigation } = this.props;
+    return <Home navigation={navigation} />;
   }
 }
 

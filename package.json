@@ -1,5 +1,5 @@
 {
-  "name": "OdinApp",
+  "name": "odinapp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,8 +18,9 @@
     "native-base": "^2.8.1",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.3",
-    "react-native-navigation": "^2.1.3",
+    "react-native-gesture-handler": "^1.0.12",
     "react-native-splash-screen": "^3.1.1",
+    "react-navigation": "^3.0.8",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
     "tcomb-form-native": "^0.6.20"

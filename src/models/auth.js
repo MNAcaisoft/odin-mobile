@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import Http, { setAuthHeader, removeAuthHeader } from '../services/http';
 import Config from '../services/config';
+import NavigationService from '../services/navigation';
 
 const auth = {
   effects: dispatch => ({
@@ -27,39 +27,14 @@ const auth = {
     async login({ data }) {
       try {
         const response = await Http.post('/auth/login/', {
-          login: data.email,
+          login: data.email.toLowerCase(),
           password: data.password,
           tenant: data.tenant || Config.tenantId,
         });
         await this.storeToken(response.data.token);
         setAuthHeader(response.data.token);
         this.setUser(response.data.tenantProfile);
-        Navigation.setRoot({
-          root: {
-            sideMenu: {
-              id: 'sideMenu',
-              left: {
-                component: {
-                  id: 'SideBar',
-                  name: `${Config.urlPrefix}.SideBar`,
-                },
-              },
-              center: {
-                stack: {
-                  id: 'AppRoot',
-                  children: [
-                    {
-                      component: {
-                        id: 'Home',
-                        name: `${Config.urlPrefix}.Home`,
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        });
+        NavigationService.navigate('Home');
         return response;
       } catch (err) {
         throw err.response;
@@ -70,45 +45,7 @@ const auth = {
         await AsyncStorage.removeItem(`@${Config.urlPrefix}:token`);
         this.setToken(null);
         removeAuthHeader();
-        Navigation.setRoot({
-          root: {
-            sideMenu: {
-              id: 'sideMenu',
-              left: {
-                component: {
-                  id: 'Drawer',
-                  name: `${Config.urlPrefix}.SideBar`,
-                },
-                visible: false,
-                enabled: false,
-              },
-              center: {
-                stack: {
-                  id: 'AppRoot',
-                  children: [
-                    {
-                      component: {
-                        id: 'Login',
-                        name: `${Config.urlPrefix}.Login`,
-                        options: {
-                          sideMenu: {
-                            left: {
-                              component: {
-                                name: 'sideMenu',
-                              },
-                              visible: false,
-                              enabled: false,
-                            },
-                          },
-                        },
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        });
+        NavigationService.navigate('Login');
       } catch (error) {
         console.log('Something went wrong!');
       }

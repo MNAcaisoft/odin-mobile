@@ -1,100 +1,30 @@
-import { Navigation } from 'react-native-navigation';
-import React from 'react';
+import * as React from 'react';
+import { Root, StyleProvider } from 'native-base';
 import { Provider } from 'react-redux';
-import SplashScreen from 'react-native-splash-screen';
+import { createAppContainer } from 'react-navigation';
+import NavigationService from './services/navigation';
 import store from './models';
-import Config from './services/config';
-import { registerScreens } from './screens';
+import getTheme from '../native-base-theme/components';
+import variables from '../native-base-theme/variables/material';
 
-registerScreens(store, Provider);
+import AppScreens from './screens';
+
+const AppContainer = createAppContainer(AppScreens);
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    Navigation.events().registerAppLaunchedListener(async () => {
-      Navigation.setDefaultOptions({
-        topBar: {
-          visible: false,
-          drawBehind: true,
-          height: 0,
-        },
-      });
-      let token = null;
-      try {
-        token = await store.dispatch.auth.getToken(`${Config.urlPrefix}:token`);
-      } catch (err) {
-        console.log(err);
-      }
-      if (token) {
-        Navigation.setRoot({
-          root: {
-            sideMenu: {
-              id: 'sideMenu',
-              left: {
-                component: {
-                  id: 'SideBar',
-                  name: `${Config.urlPrefix}.SideBar`,
-                },
-              },
-              center: {
-                stack: {
-                  id: 'AppRoot',
-                  children: [
-                    {
-                      component: {
-                        id: 'Home',
-                        name: `${Config.urlPrefix}.Home`,
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        });
-        SplashScreen.hide();
-      } else {
-        Navigation.setRoot({
-          root: {
-            sideMenu: {
-              id: 'sideMenu',
-              left: {
-                component: {
-                  id: 'Drawer',
-                  name: `${Config.urlPrefix}.SideBar`,
-                },
-                visible: false,
-                enabled: false,
-              },
-              center: {
-                stack: {
-                  id: 'AppRoot',
-                  children: [
-                    {
-                      component: {
-                        id: 'Login',
-                        name: `${Config.urlPrefix}.Login`,
-                        options: {
-                          sideMenu: {
-                            left: {
-                              component: {
-                                name: 'sideMenu',
-                              },
-                              visible: false,
-                              enabled: false,
-                            },
-                          },
-                        },
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          },
-        });
-        SplashScreen.hide();
-      }
-    });
+  render() {
+    return (
+      <Provider store={store}>
+        <StyleProvider style={getTheme(variables)}>
+          <Root style={{ backgroundColor: '#fff' }}>
+            <AppContainer
+              ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }}
+            />
+          </Root>
+        </StyleProvider>
+      </Provider>
+    );
   }
 }

@@ -2,32 +2,22 @@ import * as React from 'react';
 import { Icon } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Navigation } from 'react-native-navigation';
-
 import styles from './styles';
 
 class SideBarIcon extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    navigation: PropTypes.object,
+  };
 
-  toggle = async componentId => {
-    await Navigation.mergeOptions(componentId, {
-      sideMenu: {
-        left: {
-          visible: true,
-        },
-      },
-    });
+  toggle = () => {
+    const { navigation } = this.props;
+    navigation.toggleDrawer();
   };
 
   render() {
     const { sideBarIcon } = styles;
     return (
-      <Icon
-        style={sideBarIcon}
-        ios="ios-menu"
-        android="md-menu"
-        onPress={() => this.toggle('SideBar')}
-      />
+      <Icon style={sideBarIcon} ios="ios-menu" android="md-menu" onPress={() => this.toggle()} />
     );
   }
 }

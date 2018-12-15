@@ -1,3 +1,4 @@
-import App from './src';
+import { AppRegistry } from 'react-native';
+import App from './src/index';
 
-const app = new App();
+AppRegistry.registerComponent('odinapp', () => App);

@@ -1,53 +1,35 @@
-import * as React from 'react';
-import { Navigation } from 'react-native-navigation';
-import { Root, StyleProvider } from 'native-base';
-import getTheme from '../../native-base-theme/components';
-import variables from '../../native-base-theme/variables/material';
-import Config from '../services/config';
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  createDrawerNavigator,
+  createAppContainer,
+} from 'react-navigation';
 import HomeContainer from './home/home.container';
 import ProfileContainer from './profile/profile.container';
 import LoginContainer from './login/login.container';
+import Splash from './splash/splash.screen';
 import SideBarContainer from '../components/sideBar/sideBar.container';
 
-function themeWrap(WrappedComponent) {
-  return class theme extends React.Component {
-    static navigatorButtons = WrappedComponent.navigatorButtons;
-    static navigatorStyle = WrappedComponent.navigatorStyle;
-    render() {
-      return (
-        <StyleProvider style={getTheme(variables)}>
-          <Root style={{ backgroundColor: '#fff' }}>
-            <WrappedComponent {...this.props} />
-          </Root>
-        </StyleProvider>
-      );
-    }
-  };
-}
+const AppStack = createDrawerNavigator(
+  {
+    Home: { screen: HomeContainer },
+    Profile: { screen: ProfileContainer },
+  },
+  {
+    contentComponent: SideBarContainer,
+  }
+);
+const AuthStack = createStackNavigator({ Login: LoginContainer });
 
-export function registerScreens(store, Provider) {
-  Navigation.registerComponentWithRedux(
-    `${Config.urlPrefix}.SideBar`,
-    () => themeWrap(SideBarContainer),
-    Provider,
-    store
-  );
-  Navigation.registerComponentWithRedux(
-    `${Config.urlPrefix}.Login`,
-    () => themeWrap(LoginContainer),
-    Provider,
-    store
-  );
-  Navigation.registerComponentWithRedux(
-    `${Config.urlPrefix}.Home`,
-    () => themeWrap(HomeContainer),
-    Provider,
-    store
-  );
-  Navigation.registerComponentWithRedux(
-    `${Config.urlPrefix}.Profile`,
-    () => themeWrap(ProfileContainer),
-    Provider,
-    store
-  );
-}
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Splash,
+      App: AppStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'Splash',
+    }
+  )
+);
