@@ -27,7 +27,7 @@ const auth = {
     async login({ data }) {
       try {
         const response = await Http.post('/auth/login/', {
-          login: data.email,
+          login: data.email.toLowerCase(),
           password: data.password,
           tenant: data.tenant || Config.tenantId,
         });
