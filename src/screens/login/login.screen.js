@@ -39,7 +39,7 @@ class Login extends React.Component {
               </View>
               <View style={loginFieldsContainer}>{loginForm}</View>
               <View style={loginButtonContainer}>
-                <Button onPress={onLogin} style={loginButton} rounded>
+                <Button onPress={onLogin} style={loginButton} rounded block>
                   {loading ? <Spinner color="white" /> : <Text>LOGIN</Text>}
                 </Button>
               </View>
