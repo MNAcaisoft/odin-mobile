@@ -1,23 +1,39 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  summaryContainer: {
+    flex: 1,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  period: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  logoutButton: {
     alignSelf: 'center',
+    paddingTop: 20,
+  },
+  periodText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  balance: {
+    flex: 4,
     justifyContent: 'center',
-    backgroundColor: '#0d4364',
-    paddingVertical: 15,
-    width: '80%',
+  },
+  balanceText: {
+    color: '#0187ed',
+    fontSize: 50,
+    fontWeight: 'bold',
+  },
+  summary: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  summaryText: {},
+  listContainer: {
+    flex: 2,
   },
 });
 export default styles;

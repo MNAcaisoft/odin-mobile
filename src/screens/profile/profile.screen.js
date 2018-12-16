@@ -1,4 +1,4 @@
-import { Text, Container, View } from 'native-base';
+import { Text, Container, View, Content } from 'native-base';
 import React from 'react';
 import PropTypes from 'prop-types';
 import TopBar from '../../components/topBar';
@@ -18,9 +18,11 @@ export default class Profile extends React.Component {
     return (
       <Container>
         <TopBar title={'Profile'} left={<SideBarIcon navigation={navigation} />} />
-        <View style={container}>
-          <Text style={welcome}>Welcome to ODIN Profile!</Text>
-        </View>
+        <Content>
+          <View style={container}>
+            <Text style={welcome}>Welcome to ODIN Profile!</Text>
+          </View>
+        </Content>
       </Container>
     );
   }

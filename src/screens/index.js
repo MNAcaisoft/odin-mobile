@@ -13,9 +13,9 @@ import SideBarContainer from '../components/sideBar/sideBar.container';
 
 const AppStack = createDrawerNavigator(
   {
+    Payments: { screen: PaymentsContainer },
     Home: { screen: HomeContainer },
     Profile: { screen: ProfileContainer },
-    Payments: { screen: PaymentsContainer },
   },
   {
     contentComponent: SideBarContainer,

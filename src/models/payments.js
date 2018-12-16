@@ -11,7 +11,6 @@ const payments = {
             limit: 40,
           },
         });
-        console.log(new Date(startDate.utc()), new Date(endDate.utc()));
         this.setPayments(response.data.items);
         return response;
       } catch (err) {

@@ -17,16 +17,18 @@ class PaymentsContainer extends React.Component {
 
   constructor(props, state) {
     super(props, state);
+    this.state = { period: getCurrentTwoWeeksPeriod() };
     this.getTransactions();
   }
 
   getTransactions = async () => {
-    this.props.getPayments({ userId: this.props.user.id, ...getCurrentTwoWeeksPeriod() });
+    this.props.getPayments({ userId: this.props.user.id, ...this.state.period });
   };
 
   render() {
     const { navigation, isLoading } = this.props;
-    return <Payments navigation={navigation} isLoading={isLoading} />;
+    const { period } = this.state;
+    return <Payments navigation={navigation} isLoading={isLoading} period={period} />;
   }
 }
 
