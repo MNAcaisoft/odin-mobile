@@ -17,6 +17,7 @@ const auth = {
       try {
         const token = await AsyncStorage.getItem(`@${Config.urlPrefix}:token`);
         if (token !== null) {
+          setAuthHeader(token);
           this.setToken(token);
         }
         return token;
