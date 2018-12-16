@@ -13,8 +13,8 @@ import SideBarContainer from '../components/sideBar/sideBar.container';
 
 const AppStack = createDrawerNavigator(
   {
-    Payments: { screen: PaymentsContainer },
     Home: { screen: HomeContainer },
+    Payments: { screen: PaymentsContainer },
     Profile: { screen: ProfileContainer },
   },
   {

@@ -18,11 +18,9 @@ export default class Profile extends React.Component {
     return (
       <Container>
         <TopBar title={'Profile'} left={<SideBarIcon navigation={navigation} />} />
-        <Content>
-          <View style={container}>
-            <Text style={welcome}>Welcome to ODIN Profile!</Text>
-          </View>
-        </Content>
+        <View style={container}>
+          <Text style={welcome}>Welcome to ODIN Profile!</Text>
+        </View>
       </Container>
     );
   }

@@ -9,7 +9,7 @@ export const formatCurrency = (
     options.style = 'currency';
     options.currency = currency;
   }
-  return Number(value).toLocaleString(locale, options);
+  return Number(value).toLocaleString('en-US', options);
 };
 
 export const formatUsd = value => formatCurrency(value, { currency: 'USD', precision: 2 });

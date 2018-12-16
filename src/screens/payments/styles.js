@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   balanceText: {
-    color: '#0187ed',
+    color: '#7ED322',
     fontSize: 50,
     fontWeight: 'bold',
   },
@@ -31,9 +31,29 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  summaryText: {},
+  summaryText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   listContainer: {
     flex: 2,
+  },
+  amount: {
+    fontWeight: 'bold',
+    color: '#0187ed',
+    fontSize: 14,
+  },
+  processed: {
+    backgroundColor: '#7ED322',
+  },
+  processing: {
+    backgroundColor: '#0187ed',
+  },
+  new: {
+    backgroundColor: '#F8E71C',
+  },
+  failed: {
+    backgroundColor: '#FA5C5C',
   },
 });
 export default styles;

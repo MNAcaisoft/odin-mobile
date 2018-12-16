@@ -62,6 +62,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingRight: 10,
   },
+  paymentIcon: {
+    fontSize: 30,
+  }
 });
 
 export default styles;

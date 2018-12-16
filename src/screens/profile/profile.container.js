@@ -9,7 +9,6 @@ class ProfileContainer extends React.Component {
   };
 
   render() {
-    console.log('profile', this.props);
     const { navigation } = this.props;
     return <Profile navigation={navigation} />;
   }
