@@ -12,12 +12,44 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  logoutButton: {
-    alignSelf: 'center',
+  swiper: {
+    flexGrow: 1,
+  },
+  slide: {
+    flexGrow: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#0d4364',
-    paddingVertical: 15,
-    width: '80%',
+    alignItems: 'flex-end',
+    paddingBottom: 40,
+  },
+  slideDescription: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexGrow: 0,
+    flexShrink: 0,
+    marginVertical: 20,
+    paddingHorizontal: 40,
+    marginTop: 20,
+  },
+  slideDescriptionText: {
+    fontFamily: '$globalFontFamily',
+    fontWeight: 'normal',
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  slideImage: {
+    flexGrow: 1,
+    width: '100%',
+    marginVertical: 20,
+  },
+  flexEnd: {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  flexCenter: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 export default styles;

@@ -22,6 +22,11 @@ const userIconUri = require('../../../assets/images/user-icon-small.png');
 const routes = [
   {
     route: 'Home',
+    caption: 'Home',
+    iconName: 'md-home',
+  },
+  {
+    route: 'Payments',
     caption: 'Payments',
     iconName: 'md-card',
   },
@@ -68,14 +73,12 @@ class SideBar extends React.Component {
     const {
       container,
       linkWrapper,
-      activeLink,
       versionContainer,
       versionText,
       avatar,
       avatarContainer,
       avatarText,
     } = styles;
-    let visibleScreenInstanceId = '';
     return (
       <Container>
         <Content style={container}>
@@ -90,10 +93,7 @@ class SideBar extends React.Component {
             renderRow={route => (
               <ListItem
                 icon
-                style={[
-                  linkWrapper,
-                  visibleScreenInstanceId === 'profileStack' ? activeLink : undefined,
-                ]}
+                style={[linkWrapper]}
                 onPress={() => {
                   this.goTo(route.route, route.caption, this.isLogout(route.caption));
                 }}>
